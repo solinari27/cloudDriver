@@ -1,0 +1,12 @@
+S3:
+  REGION : ap-northeast-2
+  BUCKET : stockcrawler
+  ACCESS_KEY : QUtJQUpVTDVKMk00MjJHSjI2UVE=
+  SECRET_KEY : amZiT3ZiVUtJaWlMVnhrb21lYmx5KzU0d2FxQ09KdThLOWdNTlNzbA==
+
+DUMP:
+  DST_PATH : /home/solinari/mongodump
+  TMP_FILE : /tmp/tartest.tar.gz
+
+CONNECTION:
+  RETRY_TIME : 50
