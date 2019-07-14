@@ -20,6 +20,11 @@ import yaml
 
 
 def parseConfig(curprocess):
+    """
+    parse config yaml to get the configuration arguments
+    @param curprocess: curprocess abs path.
+    this parms for location filesystem path.
+    """
     curdir = os.path.dirname(curprocess)
     confile = os.path.join(curdir, 'config', 's3.yaml')
     args = dict()
