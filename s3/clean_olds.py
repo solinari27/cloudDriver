@@ -42,6 +42,47 @@ def parseConfig(curprocess):
     return args
 
 
+def clean_s3(args):
+    REGION = args['REGION']
+    BUCKET = args['BUCKET']
+    ACCESS_KEY = base64.b64decode(args['ACCESS_KEY'])
+    SECRET_KEY = base64.b64decode(args['SECRET_KEY'])
+    MONGO_DUMP = args['MONGO_DUMP']
+    TAR_FILE = args['TAR_FILE']
+    RETRY_TIME = args['RETRY_TIME']
+
+    session = Session(aws_access_key_id=ACCESS_KEY,
+                      aws_secret_access_key=SECRET_KEY,
+                      region_name=REGION)
+    s3 = session.resource('s3')
+    client = session.client('s3')
+    bucket_info = client.list_objects(Bucket=BUCKET)
+
+    contents = bucket_info['Contents']
+    for file in contents:
+        if file['LastModified'] > day:
+            day = file['LastModified']
+            filename = file['Key']
+        print filename
+
+    for LOOP in xrange(RETRY_TIME):
+        try:
+            # delete
+            bucket.delete_objects(
+                # Delete={'Objects': objects_to_delete}
+                Delete={
+                    'Objects': [
+                        {
+                            'Key': 'string',
+                            'VersionId': 'string'
+                        },
+                    ]
+                }
+            )
+        except:
+            continue
+
+
 def main(argv):
     """
         main program of pull mongo
