@@ -3,6 +3,7 @@ S3:
   BUCKET : stockcrawler
   ACCESS_KEY : QUtJQUpVTDVKMk00MjJHSjI2UVE=
   SECRET_KEY : amZiT3ZiVUtJaWlMVnhrb21lYmx5KzU0d2FxQ09KdThLOWdNTlNzbA==
+  KEEP_S3_NUM : 3
 
 DUMP:
   DST_PATH : /home/solinari/mongodump
