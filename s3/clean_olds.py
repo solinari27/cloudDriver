@@ -61,27 +61,24 @@ def clean_s3(args):
     contents = bucket_info['Contents']
     date_ordered_list = dict()
     for file in contents:
-        if file['LastModified'] > day:
-            day = file['LastModified']
-            filename = file['Key']
-        print filename
+        print file['Key'], file['LastModified']
 
-    for LOOP in xrange(RETRY_TIME):
-        try:
-            # delete
-            bucket.delete_objects(
-                # Delete={'Objects': objects_to_delete}
-                Delete={
-                    'Objects': [
-                        {
-                            'Key': 'string',
-                            'VersionId': 'string'
-                        },
-                    ]
-                }
-            )
-        except:
-            continue
+    # for LOOP in xrange(RETRY_TIME):
+    #     try:
+    #         # delete
+    #         bucket.delete_objects(
+    #             # Delete={'Objects': objects_to_delete}
+    #             Delete={
+    #                 'Objects': [
+    #                     {
+    #                         'Key': 'string',
+    #                         'VersionId': 'string'
+    #                     },
+    #                 ]
+    #             }
+    #         )
+    #     except:
+    #         continue
 
 
 def main(argv):
@@ -90,7 +87,7 @@ def main(argv):
     """
     curprocess = argv[0]
     args = parseConfig(curprocess)
-    print args
+    clean_s3(args=args)
 
 
 if __name__ == '__main__':
