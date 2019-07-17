@@ -59,6 +59,7 @@ def clean_s3(args):
     bucket_info = client.list_objects(Bucket=BUCKET)
 
     contents = bucket_info['Contents']
+    date_ordered_list = dict()
     for file in contents:
         if file['LastModified'] > day:
             day = file['LastModified']
